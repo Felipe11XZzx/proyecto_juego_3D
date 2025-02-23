@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://con78ng5imrnp"]
+
+[ext_resource type="Script" path="res://player_ball.gd" id="1_ct8f7"]
+[ext_resource type="Texture2D" uid="uid://b0ghykopb7k3w" path="res://imagen_antony.webp" id="2_px51d"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rq5ld"]
+rough = true
+bounce = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x536l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phhoj"]
+albedo_texture = ExtResource("2_px51d")
+
+[sub_resource type="SphereMesh" id="SphereMesh_yne0c"]
+material = SubResource("StandardMaterial3D_phhoj")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bfhph"]
+radius = 0.517337
+
+[sub_resource type="PrismMesh" id="PrismMesh_c0ebx"]
+size = Vector3(1, 1, 0.2)
+
+[node name="player_ball" type="RigidBody3D"]
+top_level = true
+physics_material_override = SubResource("PhysicsMaterial_rq5ld")
+script = ExtResource("1_ct8f7")
+
+[node name="collision_ball" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_x536l")
+
+[node name="skin_ball" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_yne0c")
+
+[node name="ball_reference_position" type="Marker3D" parent="."]
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="ball_reference_position"]
+transform = Transform3D(1, 0, 0, 0, 0.846621, 0.532197, 0, -0.532197, 0.846621, 0, 3, 2)
+current = true
+
+[node name="ground_detection_area" type="Area3D" parent="ball_reference_position"]
+
+[node name="ground_detection_collision" type="CollisionShape3D" parent="ball_reference_position/ground_detection_area"]
+shape = SubResource("SphereShape3D_bfhph")
+
+[node name="arrow_direction" type="MeshInstance3D" parent="ball_reference_position"]
+transform = Transform3D(-0.999993, 0.00364957, -0.000338046, -4.29689e-10, 0.0922315, 0.995738, 0.00366518, 0.995731, -0.0922309, -0.0835134, 0.0124332, 1.81475)
+mesh = SubResource("PrismMesh_c0ebx")

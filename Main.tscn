@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnew2ylyjbjwp"]
+
+[ext_resource type="PackedScene" uid="uid://con78ng5imrnp" path="res://player_ball.tscn" id="1_7kkad"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6v1ah"]
+size = Vector3(7, 1, 7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w3ggl"]
+size = Vector3(7, 1, 7)
+
+[node name="Main" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_6v1ah")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_w3ggl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.341652, -0.479198, 0.808482, -0.915306, 0.0255667, 0.401948, -0.213283, -0.877334, -0.429878, 7.133, 4.538, -3.889)
+
+[node name="Player_ball" parent="." instance=ExtResource("1_7kkad")]
+transform = Transform3D(-0.999464, 0, -0.0327366, 0, 1, 0, 0.0327366, 0, -0.999464, 0.133063, 2, -0.364738)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.84089, 0.690596, 0, -0.309387, 1.87699, 0, 1.795, 9.553)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0149124, 0.0164576, -0.00891018)
+shape = SubResource("BoxShape3D_6v1ah")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_w3ggl")
+skeleton = NodePath("../../StaticBody3D2")
