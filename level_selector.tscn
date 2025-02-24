@@ -23,7 +23,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0132751, 0.0994568, -3.4979
 script = ExtResource("1_hy1sj")
 LEVEL_1_SCENE = ExtResource("2_4pdcy")
 LEVEL_2_SCENE = ExtResource("3_ghgrs")
-LEVEL_3_SCENE = null
 
 [node name="fall_detection_area" type="Area3D" parent="."]
 
@@ -44,10 +43,17 @@ transform = Transform3D(0.0148174, 0, 0.99989, 0, 1, 0, -0.99989, 0, 0.0148174, 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="GridMap"]
 transform = Transform3D(-0.998098, 0, -0.0616409, -0.0318921, 0.855753, 0.516401, 0.0527494, 0.517385, -0.854125, 0, 14.5813, -88.9271)
 
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(-0.999585, 0.00835728, 0.0275831, 0.00360052, 0.985748, -0.168188, -0.0285956, -0.168019, -0.985369, 1.1009, 3.48557, 9.5754)
+[node name="Label_instructionss" type="Label3D" parent="."]
+transform = Transform3D(-0.999843, 0.00892518, -0.0153645, 0.00679574, 0.991031, 0.133454, 0.0164178, 0.133328, -0.990936, 23.2263, 12.7162, -76.262)
 billboard = 1
-text = "ESTOY HASTA LA POLLA
+text = "!Bienvenido al juego de la pelota¡
+
+1. Para mover a la izquiera (Tecla A).
+2. Para mover a la derecha (Tecla D).
+3. Para mover hacia delante (Tecla W).
+4. Para mover hacia atras (Tecla s).
+
+
 "
 
 [node name="level_area_1" type="Area3D" parent="."]
@@ -56,11 +62,22 @@ text = "ESTOY HASTA LA POLLA
 transform = Transform3D(0.0306578, 0, -0.985857, 0, 1.829, 0, 1.80274, 0, 0.0167657, 17.064, 0.231461, 8.92239)
 shape = SubResource("BoxShape3D_np5ji")
 
+[node name="Label_level_1" type="Label3D" parent="level_area_1"]
+transform = Transform3D(0.107149, 0, -0.994243, 0, 1, 0, 0.994243, 0, 0.107149, 18.1783, 2.504, 7.61163)
+text = "!TELETRANSPORTARSE AL NIVEL 1
+¡"
+font_size = 60
+
 [node name="level_area_2" type="Area3D" parent="."]
 
 [node name="Collision_level_2" type="CollisionShape3D" parent="level_area_2" groups=["change_level_2"]]
 transform = Transform3D(0.0247221, 0, -0.667204, 0, 1.23107, 0, 1.21464, 0, 0.0135798, 16.9901, 0.987258, 1.01945)
 shape = SubResource("BoxShape3D_fd770")
+
+[node name="Label_level_2" type="Label3D" parent="level_area_2"]
+transform = Transform3D(0.0418757, 0, -0.999123, 0, 1, 0, 0.999123, 0, 0.0418757, 2.504, 2.504, 1.128)
+text = "!TELETRANSPORTARSE AL NIVEL 2¡"
+font_size = 60
 
 [node name="level_area_3" type="Area3D" parent="."]
 
@@ -68,8 +85,13 @@ shape = SubResource("BoxShape3D_fd770")
 transform = Transform3D(0.0365267, 0, -0.985796, 0, 1.82, 0, 1.79463, 0, 0.0200642, 16.8819, 0.739193, -6.86513)
 shape = SubResource("BoxShape3D_hlf8r")
 
+[node name="Label_level-3" type="Label3D" parent="level_area_3"]
+transform = Transform3D(0.0418408, 0, -0.999124, 0, 1, 0, 0.999124, 0, 0.0418408, 18.0641, 2.50357, -6.89209)
+text = "!TELETRANSPORTARSE AL NIVEL 3¡"
+font_size = 60
+
 [connection signal="body_entered" from="fall_detection_area" to="." method="_on_fall_detection_area_body_entered"]
-[connection signal="body_entered" from="level_area_1" to="." method="_on_levels_area_body_entered"]
 [connection signal="body_entered" from="level_area_1" to="." method="_on_level_area_1_body_entered"]
+[connection signal="body_entered" from="level_area_1" to="." method="_on_levels_area_body_entered"]
 [connection signal="body_entered" from="level_area_2" to="." method="_on_level_area_2_body_entered"]
 [connection signal="body_entered" from="level_area_3" to="." method="_on_level_area_3_body_entered"]
