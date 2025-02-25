@@ -4,7 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://tbqy4evnycvi" path="res://bloques_grid.tres" id="1_s0l6f"]
 [ext_resource type="PackedScene" uid="uid://cl2jnnlmeejcq" path="res://level_1.tscn" id="2_4pdcy"]
 [ext_resource type="PackedScene" uid="uid://con78ng5imrnp" path="res://player_ball.tscn" id="2_q8t5k"]
-[ext_resource type="PackedScene" uid="uid://dnew2ylyjbjwp" path="res://Main.tscn" id="3_ghgrs"]
+[ext_resource type="PackedScene" uid="uid://brarwvj24ms48" path="res://level_2.tscn" id="3_kce70"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2y1c5"]
 size = Vector3(177.333, 1.24133, 165.475)
@@ -22,7 +22,7 @@ size = Vector3(1.26654, 0.001, 2.03582)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0132751, 0.0994568, -3.49796)
 script = ExtResource("1_hy1sj")
 LEVEL_1_SCENE = ExtResource("2_4pdcy")
-LEVEL_2_SCENE = ExtResource("3_ghgrs")
+LEVEL_2_SCENE = ExtResource("3_kce70")
 
 [node name="fall_detection_area" type="Area3D" parent="."]
 
@@ -43,18 +43,22 @@ transform = Transform3D(0.0148174, 0, 0.99989, 0, 1, 0, -0.99989, 0, 0.0148174, 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="GridMap"]
 transform = Transform3D(-0.998098, 0, -0.0616409, -0.0318921, 0.855753, 0.516401, 0.0527494, 0.517385, -0.854125, 0, 14.5813, -88.9271)
 
-[node name="Label_instructionss" type="Label3D" parent="."]
-transform = Transform3D(-0.999843, 0.00892518, -0.0153645, 0.00679574, 0.991031, 0.133454, 0.0164178, 0.133328, -0.990936, 23.2263, 12.7162, -76.262)
+[node name="Label_instructions" type="Label3D" parent="."]
+transform = Transform3D(-1.0872, -0.00109504, -0.0713443, -0.0082919, 0.996158, 0.0923622, 0.0767854, 0.092068, -1.00019, 23.2263, 13.6129, -75.1533)
 billboard = 1
 text = "!Bienvenido al juego de la pelota¡
 
 1. Para mover a la izquiera (Tecla A).
 2. Para mover a la derecha (Tecla D).
 3. Para mover hacia delante (Tecla W).
-4. Para mover hacia atras (Tecla s).
+4. Para mover hacia atras (Tecla S).
+5. Rotar cámara hacia la izquierda (Tecla Q).
+6. Rotar cámara hacia la derecha (Tecla E).
+
 
 
 "
+font_size = 60
 
 [node name="level_area_1" type="Area3D" parent="."]
 
@@ -63,19 +67,19 @@ transform = Transform3D(0.0306578, 0, -0.985857, 0, 1.829, 0, 1.80274, 0, 0.0167
 shape = SubResource("BoxShape3D_np5ji")
 
 [node name="Label_level_1" type="Label3D" parent="level_area_1"]
-transform = Transform3D(0.107149, 0, -0.994243, 0, 1, 0, 0.994243, 0, 0.107149, 18.1783, 2.504, 7.61163)
-text = "!TELETRANSPORTARSE AL NIVEL 1
-¡"
+transform = Transform3D(-0.0609738, 0.177222, -0.98228, 0.0109797, 0.984171, 0.176882, 0.998079, 0, -0.0619545, 18.1783, 2.504, 9.43833)
+text = "!TELETRANSPORTARSE AL NIVEL 1¡"
 font_size = 60
 
 [node name="level_area_2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4553, 0.499488, 0.871815)
 
 [node name="Collision_level_2" type="CollisionShape3D" parent="level_area_2" groups=["change_level_2"]]
 transform = Transform3D(0.0247221, 0, -0.667204, 0, 1.23107, 0, 1.21464, 0, 0.0135798, 16.9901, 0.987258, 1.01945)
 shape = SubResource("BoxShape3D_fd770")
 
 [node name="Label_level_2" type="Label3D" parent="level_area_2"]
-transform = Transform3D(0.0418757, 0, -0.999123, 0, 1, 0, 0.999123, 0, 0.0418757, 2.504, 2.504, 1.128)
+transform = Transform3D(0.0418757, 0, -0.999123, 0, 1, 0, 0.999123, 0, 0.0418757, -1.31526, 1.97195, 0.217007)
 text = "!TELETRANSPORTARSE AL NIVEL 2¡"
 font_size = 60
 
@@ -91,7 +95,7 @@ text = "!TELETRANSPORTARSE AL NIVEL 3¡"
 font_size = 60
 
 [connection signal="body_entered" from="fall_detection_area" to="." method="_on_fall_detection_area_body_entered"]
-[connection signal="body_entered" from="level_area_1" to="." method="_on_level_area_1_body_entered"]
 [connection signal="body_entered" from="level_area_1" to="." method="_on_levels_area_body_entered"]
+[connection signal="body_entered" from="level_area_1" to="." method="_on_level_area_1_body_entered"]
 [connection signal="body_entered" from="level_area_2" to="." method="_on_level_area_2_body_entered"]
 [connection signal="body_entered" from="level_area_3" to="." method="_on_level_area_3_body_entered"]

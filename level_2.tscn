@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://brarwvj24ms48"]
+
+[ext_resource type="MeshLibrary" uid="uid://tbqy4evnycvi" path="res://bloques_grid.tres" id="1_n1dly"]
+[ext_resource type="Script" path="res://level_2.gd" id="1_qeiro"]
+[ext_resource type="PackedScene" uid="uid://con78ng5imrnp" path="res://player_ball.tscn" id="2_0fl1a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dfyw2"]
+size = Vector3(141.907, 0.588379, 136.189)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_olg54"]
+size = Vector3(1, 8.50848, 8.48845)
+
+[node name="level_2" type="Node3D"]
+script = ExtResource("1_qeiro")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_n1dly")
+data = {
+"cells": PackedInt32Array(2, 65535, 2, 65530, 5, 655361, 65530, 4, 655361, 65530, 3, 655361, 65530, 2, 655361, 65530, 1, 655361, 65530, 65535, 1048578, 65532, 65535, 1048577, 65534, 65535, 1048577, 0, 65535, 1048577, 2, 4, 1, 2, 3, 1, 2, 1, 1, 2, 7, 1441794, 2, 5, 1, 0, 7, 1441793, 65532, 7, 1441793, 65530, 7, 655362, 1, 5, 0, 0, 5, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 1, 0, 65534, 1, 0, 65533, 1, 0, 65532, 1, 0, 65532, 2, 0, 65533, 3, 0, 65534, 3, 0, 65532, 4, 0, 65532, 5, 0, 65534, 5, 0, 65535, 6, 0, 65534, 6, 0, 65534, 7, 0, 196606, 9, 131076, 196606, 11, 524292, 65534, 13, 1441792, 131069, 16, 1441792, 131069, 18, 655364, 262141, 20, 0, 262141, 22, 0, 262141, 24, 0, 262141, 26, 0, 131069, 28, 4, 131069, 30, 655362, 65538, 29, 2, 65538, 33, 0, 65542, 33, 0, 65542, 38, 0, 65546, 35, 0, 65551, 35, 1441793, 65553, 35, 1048577, 65555, 35, 1441793, 65557, 35, 1048577, 65559, 35, 1441793, 65561, 35, 1048577, 65563, 35, 1441793, 65565, 35, 1441792, 65566, 35, 1441792, 65568, 35, 1441792, 65573, 35, 1441792, 131116, 33, 2, 131116, 37, 1441794, 131114, 37, 655362, 131114, 33, 1048578, 131116, 35, 1, 131114, 35, 1441797, 40, 35, 1441796, 38, 35, 0, 65578, 33, 524288, 65579, 33, 524288, 65578, 37, 524288, 65579, 37, 524288)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="player_ball" parent="." instance=ExtResource("2_0fl1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66271, 2.28468, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.0264175, 0.958407, -0.284179, 0.0887119, 0.285404, 0.954293, 0.995707, 0, -0.0925618, -14.7226, 7.99663, 12.3081)
+
+[node name="fall_detection_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3656, -3.29758, 0)
+
+[node name="fall_collision" type="CollisionShape3D" parent="fall_detection_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2594, 2.26449, 42.2172)
+shape = SubResource("BoxShape3D_dfyw2")
+
+[node name="goal_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.4727, 17.4184)
+
+[node name="goal_collision" type="CollisionShape3D" parent="goal_area"]
+transform = Transform3D(0.00254405, -0.267938, 0, 0.267938, 0.00254405, 0, 0, 0, 0.26795, 84.9471, -5.78429, 53.4941)
+shape = SubResource("BoxShape3D_olg54")
+
+[connection signal="body_entered" from="fall_detection_area" to="." method="_on_fall_detection_area_body_entered"]
+[connection signal="body_entered" from="goal_area" to="." method="_on_goal_area_body_entered"]

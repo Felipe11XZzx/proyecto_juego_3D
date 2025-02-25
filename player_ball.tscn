@@ -40,8 +40,10 @@ transform = Transform3D(1, 0, 0, 0, 0.846621, 0.532197, 0, -0.532197, 0.846621, 
 current = true
 
 [node name="ground_detection_area" type="Area3D" parent="ball_reference_position"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0171365, 0)
 
 [node name="ground_detection_collision" type="CollisionShape3D" parent="ball_reference_position/ground_detection_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.057484, 0)
 shape = SubResource("SphereShape3D_bfhph")
 
 [node name="arrow_direction" type="MeshInstance3D" parent="ball_reference_position"]
