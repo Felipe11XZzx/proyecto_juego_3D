@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://3fi8wm22rvxq"]
+
+[ext_resource type="PackedScene" uid="uid://con78ng5imrnp" path="res://player_ball.tscn" id="1_1a3uj"]
+[ext_resource type="MeshLibrary" uid="uid://tbqy4evnycvi" path="res://bloques_grid.tres" id="1_1tdo6"]
+[ext_resource type="Script" path="res://level_4.gd" id="1_jutlu"]
+[ext_resource type="PackedScene" uid="uid://da6ax0difoe81" path="res://level_selector.tscn" id="2_igqb0"]
+[ext_resource type="PackedScene" uid="uid://be8ka3eepygm6" path="res://mesh_animated.tscn" id="3_4fv3e"]
+[ext_resource type="Script" path="res://mesh_animated.gd" id="4_53mh1"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_glp7g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_goxjj"]
+size = Vector3(2.66211, 1, 1.26489)
+
+[node name="level_4" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.98559, 0)
+script = ExtResource("1_jutlu")
+NEXT_LEVEL = ExtResource("2_igqb0")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_1tdo6")
+data = {
+"cells": PackedInt32Array(-196606, 65534, 2, -131075, 65534, 1048578, -196606, 3, 1441794, -131075, 3, 655362, -196606, 1, 1, -196606, 0, 1, -131075, 2, 655361, -131075, 0, 655361, -131074, 65534, 1048577, -196608, 65534, 1048577, -196607, 65535, 1441792, -196608, 0, 1441792, -131073, 0, 1441792, -131074, 1, 1441792, -131073, 1, 1441792, -196608, 1, 1441792, -196608, 2, 1441792, -131073, 3, 1441792, -196608, 3, 1441792, -196607, 5, 655364, -196608, 5, 655364, -131074, 5, 655364, -2, 7, 655363, -1, 7, 3, -65535, 7, 655363, -65535, 9, 3, -2, 9, 3, -2, 10, 1048579, -65535, 10, 3, -65536, 10, 1441795, -1, 9, 1441795, -1, 10, 655363, -2, 12, 655362, -65535, 12, 1441794, -1, 12, 1441792, -196608, 14, 4, -131073, 14, 4, -131073, 16, 655361, -196608, 16, 1, -196608, 18, 655364, -131073, 18, 655364, -65536, 20, 655360, -1, 20, 655360, -65536, 22, 1, -1, 22, 655361, -1, 21, 1, -65536, 23, 1441795, -1, 23, 655363, -65536, 24, 655363, -1, 24, 655363, -65536, 26, 3, -1, 26, 655363, -6, 30, 1048576, -6, 28, 1048576, -6, 27, 1048576, -6, 25, 1048576, -8, 25, 1048576, -10, 25, 1048576, -11, 25, 1048576, -13, 25, 1048576, -14, 25, 1048576, -14, 23, 2, -14, 27, 1441794, -17, 27, 655362, -17, 23, 1048578, 65520, 25, 1048581, -17, 25, 655361, -15, 23, 1048577, -15, 27, 1441793, -15, 24, 1441792, -16, 26, 655360)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="player_ball" parent="." instance=ExtResource("1_1a3uj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72726, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.164219, 0.84459, -0.509608, 0.29314, 0.451498, 0.842745, 0.941861, -0.287781, -0.173439, -8.64334, 5.00772, 0.742969)
+
+[node name="fall_detection_area" type="Area3D" parent="DirectionalLight3D"]
+transform = Transform3D(1.23402, 2.98023e-08, 8.9407e-08, 8.9407e-08, 1.34589, -6.70552e-08, -2.98023e-08, -2.23517e-08, 1.57849, 0, 0, 0)
+
+[node name="fall_collision" type="CollisionShape3D" parent="DirectionalLight3D/fall_detection_area"]
+transform = Transform3D(6.34152, 0.523843, -1.17585, -2.19203, 0.629646, -4.74512, -1.25964, 1.54151, 2.33777, 36.2776, -20.0633, -21.5612)
+shape = SubResource("WorldBoundaryShape3D_glp7g")
+
+[node name="goal_area" type="Area3D" parent="."]
+
+[node name="goal_collision" type="CollisionShape3D" parent="goal_area"]
+transform = Transform3D(0.909539, 0, 0, 0, 1, 0, 0, 0, 1.6874, -30.956, 0.451673, 50.9306)
+shape = SubResource("BoxShape3D_goxjj")
+
+[node name="mesh_animated_floor" parent="." node_paths=PackedStringArray("punto_inicial", "punto_final") instance=ExtResource("3_4fv3e")]
+transform = Transform3D(-0.999912, 0, -0.0132468, 0, 1, 0, 0.0132468, 0, -0.999912, 0.826459, -11.7578, 59.5159)
+script = ExtResource("4_53mh1")
+punto_inicial = NodePath("initial_position_marker")
+punto_final = NodePath("final_position_marker")
+
+[node name="initial_position_marker" type="Marker3D" parent="mesh_animated_floor"]
+transform = Transform3D(-0.999912, 0, 0.0132468, 0, 1, 0, -0.0132468, 0, -0.999912, -2.15765, -1.99457, 1.25928)
+
+[node name="final_position_marker" type="Marker3D" parent="mesh_animated_floor"]
+transform = Transform3D(-0.999912, 0, 0.0132468, 0, 1, 0, -0.0132468, 0, -0.999912, 10.7279, 0.948682, -1.10654)
+
+[connection signal="body_entered" from="DirectionalLight3D/fall_detection_area" to="." method="_on_fall_detection_area_body_entered"]
+[connection signal="body_entered" from="goal_area" to="." method="_on_goal_area_body_entered"]

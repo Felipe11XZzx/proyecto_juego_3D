@@ -1,13 +1,16 @@
 extends RigidBody3D
 
-const JUMP_FORCE = 5.0
+const JUMP_FORCE = 10.0
 const TORQUE_FORCE = 5.0
 const CAMERA_ROTATION_SPEED = 5.0
 const CAMERA_DISTANCE = 5.0
 const CAMERA_HEIGHT = 2.0
 
-func is_on_floor() -> bool:
-	return $ball_reference_position/ground_detection_area.get_overlapping_bodies().size() > 0
+func _ready() -> void:
+	$ball_reference_position.rotation.y = $".".rotation.y
+	
+func is_on_floor():
+	return $ball_reference_position / ground_detection_area.get_overlapping_bodies().size() > 1
 
 func _physics_process(delta: float) -> void:
 	$ball_reference_position.position = position

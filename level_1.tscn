@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://level_1.gd" id="1_7vigp"]
 [ext_resource type="MeshLibrary" uid="uid://tbqy4evnycvi" path="res://bloques_grid.tres" id="1_smhbd"]
+[ext_resource type="PackedScene" uid="uid://brarwvj24ms48" path="res://level_2.tscn" id="2_601wv"]
 [ext_resource type="PackedScene" uid="uid://con78ng5imrnp" path="res://player_ball.tscn" id="2_cqr4d"]
-[ext_resource type="PackedScene" uid="uid://dnew2ylyjbjwp" path="res://Main.tscn" id="2_omlaa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hdsxq"]
 size = Vector3(29.8694, 1, 38.8385)
@@ -14,7 +14,7 @@ size = Vector3(2.27369, 1, 2.32585)
 [node name="Level1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559399, -1.85929, 8.00973)
 script = ExtResource("1_7vigp")
-NEXT_LEVEL = ExtResource("2_omlaa")
+NEXT_LEVEL = ExtResource("2_601wv")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_smhbd")

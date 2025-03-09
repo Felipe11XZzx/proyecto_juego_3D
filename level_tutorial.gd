@@ -4,6 +4,12 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(ProjectSettings.get_setting("application/config/name"))  # Nombre del proyecto
+	print(OS.get_executable_path().get_base_dir())  # Directorio del ejecutable
+	print(OS.get_user_data_dir())  # Directorio de datos de usuario
+	print("Ruta del proyecto: ", ProjectSettings.globalize_path("res://"))
+
+	
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

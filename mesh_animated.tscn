@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://be8ka3eepygm6"]
+
+[ext_resource type="MeshLibrary" uid="uid://tbqy4evnycvi" path="res://bloques_grid.tres" id="1_5tcrx"]
+
+[sub_resource type="Animation" id="Animation_ap1tm"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_5j1hn"]
+resource_name = "moving_animation"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 4, 1, 0, 0, -8)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p2q61"]
+_data = {
+"RESET": SubResource("Animation_ap1tm"),
+"moving_animation": SubResource("Animation_5j1hn")
+}
+
+[node name="mesh_animated" type="Node3D"]
+
+[node name="mesh_floor" type="GridMap" parent="."]
+mesh_library = ExtResource("1_5tcrx")
+cell_size = Vector3(4, 2, 4)
+data = {
+"cells": PackedInt32Array(0, 65535, 1048577, 65535, 65535, 1048578, 65535, 0, 655362, 0, 0, 655360)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="initial_position" type="Marker3D" parent="."]
+
+[node name="final_position" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../mesh_floor")
+libraries = {
+"": SubResource("AnimationLibrary_p2q61")
+}
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
