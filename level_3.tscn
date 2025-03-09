@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://byh52g3njmopd"]
+[gd_scene load_steps=4 format=3 uid="uid://byh52g3njmopd"]
 
 [ext_resource type="PackedScene" uid="uid://con78ng5imrnp" path="res://player_ball.tscn" id="1_1a3uj"]
 [ext_resource type="MeshLibrary" uid="uid://tbqy4evnycvi" path="res://bloques_grid.tres" id="1_1tdo6"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_e1kuh"]
 
 [node name="level_3" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.98559, 0)
@@ -21,7 +23,9 @@ transform = Transform3D(0.164219, 0.84459, -0.509608, 0.29314, 0.451498, 0.84274
 
 [node name="fall_detection_area" type="Area3D" parent="DirectionalLight3D"]
 
-[node name="fall_collision" type="CollisionShape3D" parent="DirectionalLight3D/fall_detection_area"]
+[node name="Area3D" type="CollisionShape3D" parent="DirectionalLight3D/fall_detection_area"]
+transform = Transform3D(7.84113, -0.00608113, 1.32015, -1.09891, -0.568723, 7.33124, 0.563175, -1.02507, -4.07531, 1.41063, 30.832, -43.498)
+shape = SubResource("WorldBoundaryShape3D_e1kuh")
 
 [node name="goal_area" type="Area3D" parent="."]
 
